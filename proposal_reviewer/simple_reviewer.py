@@ -8,7 +8,6 @@ from typing import Dict, List, Optional, Any
 from pydantic import BaseModel, Field
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
 
 # Import section-specific prompts
 from prompts import (

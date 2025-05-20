@@ -25,8 +25,7 @@ def main():
     parser.add_argument("--json-output", help="Path to save structured feedback as JSON.", default="output/feedback.json")
     parser.add_argument("--flat-json-output", help="Path to save all feedback items as a flat list.", default="output/flat_feedback.json")
     parser.add_argument("--change-requests", help="Path to save simple change requests list (one per line).", default="output/change_requests.txt")
-    parser.add_argument("--model", help="OpenAI model to use", default="o4-mini", 
-                      choices=["o4-mini", "gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"])
+    parser.add_argument("--model", help="OpenAI model to use", default="o4-mini", choices=["o4-mini", "gpt-4o-mini", "gpt-4o"])
     parser.add_argument("--verbose", "-v", action="store_true", help="Show detailed progress")
     
     args = parser.parse_args()
