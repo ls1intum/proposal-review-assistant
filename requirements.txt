@@ -14,7 +14,3 @@ python-dotenv>=1.0.0
 # Jupyter (for interactive notebook)
 jupyter>=1.0.0
 pandas>=2.0.0
-
-# Visualization (optional)
-matplotlib>=3.7.0
-seaborn>=0.13.0 

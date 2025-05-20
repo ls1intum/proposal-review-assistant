@@ -174,7 +174,7 @@ Focus on identifying specific problems and providing actionable suggestions.
 I want you to focus on the {section_name.upper()} section, but consider the context of the entire proposal when giving feedback.
 
 Here is the FULL PROPOSAL for context:
-{full_text[:8000]}  # Limiting to 8000 chars to avoid token limits
+{full_text}
 
 Here is the specific {section_name.upper()} section to focus on:
 {section_content}

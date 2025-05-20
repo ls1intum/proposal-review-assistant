@@ -87,7 +87,7 @@ def main():
                     
                     # Create simple change requests for content issues
                     for issue in content_feedback.issues:
-                        section_name = issue.section or section
+                        section_name = section
                         change_request = f"{section_name.capitalize()} > [{issue.severity}]"
                         if issue.rule:
                             change_request += f" {issue.rule} -"
@@ -100,7 +100,7 @@ def main():
                 writing_feedback = feedback.get("writing_feedback")
                 if writing_feedback and hasattr(writing_feedback, "issues"):
                     writing_issues = [{    
-                        "section": issue.section or section,
+                        "section": section,
                         "category": issue.category,
                         "severity": issue.severity,
                         "quote": issue.quote,
@@ -115,7 +115,7 @@ def main():
                     
                     # Create simple change requests for writing issues
                     for issue in writing_feedback.issues:
-                        section_name = issue.section or section
+                        section_name = section
                         change_request = f"{section_name.capitalize()} > [{issue.severity}]"
                         if issue.rule:
                             change_request += f" {issue.rule} -"
