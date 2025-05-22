@@ -1,0 +1,42 @@
+[project]
+name = "proposal-review-assistant"
+version = "0.1.0"
+description = "A proposal review assistant."
+authors = [
+    { name = "Felix T.J. Dietrich", email = "felixtj.dietrich@tum.de"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0.0"
+
+[tool.poetry.dependencies]
+python = ">=3.13,<4.0.0"
+pydantic-settings = "2.8.1"
+langchain = "0.3.19"
+langchain-core = "0.3.40"
+langchain-openai = "0.3.7"
+langchain-ollama = "0.2.3"
+langfuse = "2.59.6"
+gradio = "5.20.0"
+pypdf = "^5.5.0"
+pymupdf = "^1.26.0"
+pymupdf4llm = "^0.0.24"
+
+[tool.poetry]
+packages = [
+    { include = "app" }
+]
+
+[tool.poetry.scripts]
+app = "app.main:app"
+
+[tool.poetry.group.dev.dependencies]
+black = "25.1.0"
+flake8 = "7.1.2"
+
+[virtualenvs]
+create = true
+in-project = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

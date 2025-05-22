@@ -1,8 +1,8 @@
-"""
-This module contains the prompt for evaluating the general writing quality of a thesis proposal.
-"""
+from app.prompts.utils import get_prompt
 
-GENERAL_WRITING_PROMPT = """
+get_general_writing_prompt = get_prompt(
+  key="general-writing",
+  fallback="""\
 Analyze the general writing quality of my thesis proposal and provide feedback on the following aspects:
 
 1. Active vs. passive voice: Identify passages where passive voice is used and suggest active alternatives with clear actors. Scientific writing requires identifying actors and powerful subjects for all sentences.
@@ -32,4 +32,8 @@ Analyze the general writing quality of my thesis proposal and provide feedback o
 8. Pronoun usage: Check for inappropriate use of "I," "one," or "our" (use "we" sparingly, only when referring to the thesis approach).
 
 Remember that scientific writing should use clear, direct language with active formulations and consistent terminology. Help me improve the overall quality and readability of my thesis proposal.
-"""
+
+Keep the issues small, you can have multiple sub-aspects per aspect to touch on, as many as needed. Be complete! Be really concise and prioritize extremely well to not overwhelm me. I want to have specific and easy to implement action items! Go above and beyond and reflect deeply. Do not be ambiguous and be very explicit, you are a very critical expert researcher and software engineer!
+
+{{proposal}}
+""")

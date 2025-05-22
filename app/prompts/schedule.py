@@ -1,8 +1,8 @@
-"""
-This module contains the prompt for evaluating the schedule section of a thesis proposal.
-"""
+from app.prompts.utils import get_prompt
 
-SCHEDULE_PROMPT = """
+get_schedule_prompt = get_prompt(
+  key="schedule",
+  fallback="""\
 Review my thesis proposal's schedule section and provide feedback on the following aspects:
 
 1. Length: Is it appropriately sized (approximately 300-400 words or 3/4-1 page)?
@@ -26,4 +26,8 @@ Review my thesis proposal's schedule section and provide feedback on the followi
 10. Clarity: Are iterations and tasks described clearly and consistently?
 
 The schedule should demonstrate planning ability and project feasibility by breaking down the work into manageable iterations with clear deliverables that align with the stated objectives.
-"""
+
+Keep the issues small, you can have multiple sub-aspects per aspect to touch on, as many as needed. Be complete! Do not get hung up on length! Be really concise and prioritize extremely well to not overwhelm me. I want to have specific and easy to implement action items! Go above and beyond and reflect deeply. Do not be ambiguous and be very explicit, you are a very critical expert researcher and software engineer!
+
+{{proposal}}
+""")

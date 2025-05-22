@@ -1,4 +1,8 @@
-PROBLEM_PROMPT = """
+from app.prompts.utils import get_prompt
+
+get_problem_prompt = get_prompt(
+  key="problem",
+  fallback="""\
 Analyze my thesis proposal's problem section and provide feedback on the following aspects:
 
 1. Length and depth: Is it appropriately sized (approximately 300 words or 2/3 page) with sufficient detail?
@@ -18,4 +22,8 @@ Analyze my thesis proposal's problem section and provide feedback on the followi
 8. Language: Is active voice used consistently, especially when describing how the problem affects stakeholders?
 
 The problem section should clearly articulate what needs to be solved and why it matters, focusing exclusively on the issue without discussing potential solutions. It should make readers understand the negative consequences of leaving this problem unsolved.
-"""
+
+Keep the issues small, you can have multiple sub-aspects per aspect to touch on, as many as needed. Be complete! Do not get hung up on length! Be really concise and prioritize extremely well to not overwhelm me. I want to have specific and easy to implement action items! Go above and beyond and reflect deeply. Do not be ambiguous and be very explicit, you are a very critical expert researcher and software engineer!
+
+{{proposal}}
+""")
