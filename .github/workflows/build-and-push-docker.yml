@@ -1,4 +1,4 @@
-name: Hyperion - Build Docker Images
+name: Build Docker Images
 
 on:
   push:

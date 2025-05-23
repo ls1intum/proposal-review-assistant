@@ -1,4 +1,4 @@
-name: Proposal Review Assistant - Deploy
+name: Deploy
 
 on:
   workflow_dispatch:
