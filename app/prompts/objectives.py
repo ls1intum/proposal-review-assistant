@@ -1,4 +1,8 @@
-OBJECTIVE_PROMPT = """
+from app.prompts.utils import get_prompt
+
+get_objectives_prompt = get_prompt(
+  key="objectives",
+  fallback="""\
 Analyze my thesis proposal's objectives section and provide feedback on the following aspects:
 
 1. Length: Is it sufficiently detailed (approximately 800-900 words or 2 pages total, excluding diagrams)?
@@ -23,4 +27,8 @@ Analyze my thesis proposal's objectives section and provide feedback on the foll
 9. Feasibility: Do the objectives seem achievable within the scope of a thesis?
 
 The objectives section should provide a clear roadmap for what you aim to accomplish, with enough detail to show how these goals will address the stated problem.
-"""
+
+Keep the issues small, you can have multiple sub-aspects per aspect to touch on, as many as needed. Be complete! Do not get hung up on length! Be really concise and prioritize extremely well to not overwhelm me. I want to have specific and easy to implement action items! Go above and beyond and reflect deeply. Do not be ambiguous and be very explicit, you are a very critical expert researcher and software engineer!
+
+{{proposal}}
+""")

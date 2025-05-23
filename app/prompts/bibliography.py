@@ -1,8 +1,8 @@
-"""
-This module contains the prompt for evaluating the bibliography section of a thesis proposal.
-"""
+from app.prompts.utils import get_prompt
 
-BIBLIOGRAPHY_PROMPT = """
+get_bibliography_prompt = get_prompt(
+  key="bibliography",
+  fallback="""\
 Analyze my thesis proposal's bibliography and provide feedback on the following aspects:
 
 1. Quality: Does it include only scientific and peer-reviewed publications (conference papers, journal articles, scientific books)?
@@ -26,4 +26,8 @@ Analyze my thesis proposal's bibliography and provide feedback on the following 
 10. Formatting: Are entries clean and free from duplicate or incorrect information (e.g., location details for ACM conferences)?
 
 The bibliography should demonstrate your familiarity with relevant scientific literature and provide a solid foundation for your research. Quality and relevance of sources are more important than quantity beyond the minimum requirement.
-"""
+
+Keep the issues small, you can have multiple sub-aspects per aspect to touch on, as many as needed. Be complete! Be really concise and prioritize extremely well to not overwhelm me. I want to have specific and easy to implement action items! Go above and beyond and reflect deeply. Do not be ambiguous and be very explicit, you are a very critical expert researcher and software engineer!
+
+{{proposal}}
+""")

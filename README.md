@@ -9,7 +9,7 @@ A tool for academic proposal review and feedback generation using Large Language
   - Detailed natural language feedback on writing and content
   - Structured feedback with specific issues and suggestions
 - Generates a comprehensive summary with key issues and improvement recommendations
-- Simple command-line interface for easy use
+- Web-based interface using Gradio for easy proposal upload and feedback review
 - Outputs both human-readable Markdown and structured JSON
 - Works with PDF proposal documents
 
@@ -21,60 +21,122 @@ git clone https://github.com/yourusername/proposal-assistance.git
 cd proposal-assistance
 ```
 
-2. Create a virtual environment and install dependencies:
+2. Install Poetry (if not already installed):
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-3. Set up your OpenAI API key:
+3. Install dependencies using Poetry:
 ```bash
-export OPENAI_API_KEY=your_api_key_here
+poetry install
 ```
+
+4. Set up your environment variables:
+```bash
+# Copy the example environment file
+cp .env.example .env
+# Edit with your preferred editor
+nano .env  # or vim, VS Code, etc.
+```
+
+The project uses a flexible model provider system supporting OpenAI, Azure OpenAI, and Ollama.
 
 ## Usage
 
-### Command-Line Interface
+### Web Interface (Gradio)
 
-The simplest way to use the tool is through the command-line interface:
+The easiest way to use the tool is through the web interface:
 
 ```bash
-python review_proposal.py path/to/your/proposal.pdf --output review_results.md --json-output feedback.json
+poetry run app
 ```
 
-Options:
-- `--output`, `-o`: Path to save the review results as Markdown (default: review_results.md)
-- `--json-output`: Path to save structured feedback as JSON (default: output/feedback.json)
-- `--model`: OpenAI model to use (default: gpt-3.5-turbo, options: o4-mini, gpt-4-turbo, gpt-4, gpt-3.5-turbo)
-- `--verbose`, `-v`: Show detailed progress
+This will start a Gradio web application accessible at `http://127.0.0.1:7860`. From there, you can:
 
-### Example
+1. Upload your proposal PDF
+2. View generated feedback in the interface
+3. Download structured feedback as JSON or text
+4. Copy feedback directly from the interface
+
+If you've set `PLAYGROUND_USERNAME` and `PLAYGROUND_PASSWORD` in your environment, the interface will be password protected.
+
+### Docker Support
+
+You can also run the application using Docker:
 
 ```bash
-python review_proposal.py input/your_proposal.pdf --verbose
+docker compose -f docker/compose.app.yaml up
 ```
 
 The output will include:
-- Detailed feedback on each section
+- Detailed feedback on each proposal section
 - Structured feedback with specific issues and suggestions
-- An overall assessment with key strengths and weaknesses
+- Priority-based organization of feedback items
 - Recommendations for improvement
 
 ## Project Structure
 
-- `proposal_reviewer/`: Main package containing proposal review functionality
-  - `simple_reviewer.py`: Core reviewer implementation
-- `review_proposal.py`: Command-line interface
-- `prompts/`: Directory containing section-specific prompt templates
-- `requirements.txt`: Required dependencies
+- `app/`: Main package containing the application
+  - `main.py`: Gradio web interface implementation
+  - `pdf_converter.py`: PDF processing and text extraction
+  - `settings.py`: Configuration and environment variables
+  - `models/`: LLM integration (OpenAI, Azure OpenAI, Ollama)
+  - `prompts/`: Directory containing section-specific prompt templates
+- `docker/`: Docker configuration files
+- `pyproject.toml`: Poetry project definition and dependencies
 
 ## Advanced Usage
 
 You can extend the functionality by:
-- Adding custom section extraction patterns for different proposal formats
-- Implementing custom feedback strategies for specific domains
-- Integrating with other PDF processing tools for improved text extraction
+
+- Creating custom prompt templates for specialized domains
+- Adding new section analyzers in the `prompts/` directory
+- Integrating alternative LLM providers by extending the models in `app/models/`
+- Customizing the feedback display in the Gradio interface
+- Setting up Langfuse for tracking and analyzing feedback generations
+
+## Environment Variables
+
+The project supports multiple LLM providers through a flexible configuration system. You can find examples in the `.env.example` file:
+
+### Authentication
+
+- `PLAYGROUND_USERNAME`, `PLAYGROUND_PASSWORD`: Optional credentials for the Gradio interface
+
+### Model Configuration
+
+- `MODEL_NAME`: Main model for proposal analysis (e.g., "azure_openai:o3-mini")
+- `IMAGE_MODEL_NAME`: Model for processing figures/diagrams (e.g., "azure_openai:gpt-4o")
+- `FORMAT_MODEL_NAME`: Model for formatting output (e.g., "azure_openai:gpt-41-mini")
+
+### OpenAI Configuration
+
+- `OPENAI_API_KEY`: Your OpenAI API key
+
+### Azure OpenAI Configuration
+
+- `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL
+- `AZURE_OPENAI_API_KEY`: Your Azure OpenAI API key
+- `OPENAI_API_VERSION`: API version for Azure OpenAI
+
+### Ollama Configuration
+
+- `OLLAMA_HOST`: Host address for Ollama
+- `OLLAMA_BASIC_AUTH_USERNAME`, `OLLAMA_BASIC_AUTH_PASSWORD`: Optional Ollama authentication
+
+### Observability
+
+- `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST`: Langfuse configuration for tracking
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
