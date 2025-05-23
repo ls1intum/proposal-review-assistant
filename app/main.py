@@ -16,6 +16,7 @@ from app.prompts.bibliography import get_bibliography_prompt
 from app.prompts.schedule import get_schedule_prompt
 from app.prompts.transparency import get_transparency_prompt
 from app.prompts.general_writing import get_general_writing_prompt
+from app.prompts.figures_diagrams import get_figures_diagrams_prompt
 
 from app.models import get_model
 from app.pdf_converter import convert_pdf_to_clean_markdown
@@ -169,6 +170,7 @@ def upload_file(file):
     print(f"Converted proposal: {proposal}")
     chain = RunnableParallel({
         "general_writing": get_general_writing_prompt() | issue_model,
+        "figures_diagrams": get_figures_diagrams_prompt() | issue_model,
         "abstract": get_abstract_prompt() | issue_model,
         "introduction": get_introduction_prompt() | issue_model,
         "problem": get_problem_prompt() | issue_model,
