@@ -22,7 +22,7 @@ jobs:
     with:
       environment: "Production"
       docker-compose-file: "./docker/compose.app.yaml"
-      main-image-name: ls1intum/proposal-review-assistant
+      main-image-name: ls1intum/proposal-review-assistant/app
       image-tag: ${{ inputs.image-tag }}
       deployment-base-path: "/opt/proposal-review-assistant"
     secrets: inherit
