@@ -1,7 +1,7 @@
 FROM python:3.13-alpine
 
 RUN apk update && \
-    apk add --no-cache gcc g++ make musl-dev postgresql-dev rust cargo curl clang
+    apk add --no-cache gcc g++ make musl-dev postgresql-dev rust cargo curl clang clang-dev llvm-dev
 
 RUN pip install poetry==2.1.1
 
