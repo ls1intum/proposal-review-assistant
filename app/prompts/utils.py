@@ -1,9 +1,9 @@
 from langfuse import Langfuse
 from langchain_core.prompts import PromptTemplate
 from app.settings import settings
-from logging import get_logger
+from logging import getLogger
 
-logger = get_logger(__name__)
+logger = getLogger(__name__)
 
 
 def get_prompt(key, fallback):
