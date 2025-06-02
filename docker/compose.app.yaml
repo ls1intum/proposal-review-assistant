@@ -36,16 +36,16 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.http-application-server.entryPoints=http"
-      - "traefik.http.routers.http-application-server.middlewares=redirect-to-https"
-      - "traefik.http.routers.http-application-server.rule=Host(`${APP_HOSTNAME}`) && PathPrefix(`/`)"
-      - "traefik.http.routers.https-application-server.entryPoints=https"
-      - "traefik.http.routers.https-application-server.rule=Host(`${APP_HOSTNAME}`) && PathPrefix(`/`)"
-      - "traefik.http.routers.https-application-server.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.https-application-server.tls=true"
-      - "traefik.http.services.app.loadbalancer.server.port=7860"
-      - "traefik.http.routers.http-application-server.priority=5"
-      - "traefik.http.routers.https-application-server.priority=10"
+      - "traefik.http.routers.http-proposal-review-assistant.entryPoints=http"
+      - "traefik.http.routers.http-proposal-review-assistant.middlewares=redirect-to-https"
+      - "traefik.http.routers.http-proposal-review-assistant.rule=Host(`${APP_HOSTNAME}`) && PathPrefix(`/`)"
+      - "traefik.http.routers.https-proposal-review-assistant.entryPoints=https"
+      - "traefik.http.routers.https-proposal-review-assistant.rule=Host(`${APP_HOSTNAME}`) && PathPrefix(`/`)"
+      - "traefik.http.routers.https-proposal-review-assistant.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.https-proposal-review-assistant.tls=true"
+      - "traefik.http.services.http-proposal-review-assistant.loadbalancer.server.port=7860"
+      - "traefik.http.routers.http-proposal-review-assistant.priority=5"
+      - "traefik.http.routers.https-proposal-review-assistant.priority=10"
 
 networks:
   shared-network:
