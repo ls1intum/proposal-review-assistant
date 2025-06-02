@@ -22,7 +22,7 @@ jobs:
     with:
       environment: "Production"
       docker-compose-file: "./docker/compose.app.yaml"
-      main-image-name: ls1intum/proposal-review-assistant/app
+      main-image-name: ls1intum/proposal-review-assistant
       image-tag: ${{ inputs.image-tag }}
       deployment-base-path: "/opt/proposal-review-assistant"
     secrets: inherit
@@ -34,7 +34,7 @@ jobs:
       environment: "Production"
       docker-compose-file: "./docker/compose.proxy.yaml"
       # We just keep the main-image-name and image-tag as placeholders
-      main-image-name: ls1intum/proposal-review-assistant/app
+      main-image-name: ls1intum/proposal-review-assistant
       image-tag: ${{ inputs.image-tag }}
       deployment-base-path: "/opt/proxy"
     secrets: inherit

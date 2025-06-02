@@ -20,7 +20,7 @@ jobs:
         include:
           - name: Proposal Review Assistant
             dockerfile: ./Dockerfile
-            image: ghcr.io/ls1intum/proposal-review-assistant/app
+            image: ghcr.io/ls1intum/proposal-review-assistant
             context: .
     uses: ls1intum/.github/.github/workflows/build-and-push-docker-image.yml@feat/minor-build-improvements
     with:
