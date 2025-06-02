@@ -292,4 +292,8 @@ playground_auth = (
 def app():
     """Main function to run the app."""
     # Run the Gradio app
-    playground.launch(auth=playground_auth)
+    playground.launch(
+        auth=playground_auth,
+        server_name="0.0.0.0",
+        server_port=7860
+    )
